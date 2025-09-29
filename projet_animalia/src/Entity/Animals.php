@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\AnimalsRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AnimalsRepository::class)]
@@ -21,6 +22,11 @@ class Animals
 
     #[ORM\Column(length: 255)]
     private ?string $genre = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $img = null;
+
+
 
     public function getId(): ?int
     {
@@ -59,6 +65,18 @@ class Animals
     public function setGenre(string $genre): static
     {
         $this->genre = $genre;
+
+        return $this;
+    }
+
+    public function getImg(): ?string
+    {
+        return $this->img;
+    }
+
+    public function setImg(string $img): static
+    {
+        $this->img = $img;
 
         return $this;
     }
