@@ -2,8 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Animals;
+use App\Form\AnimalsType;
 use App\Repository\AnimalsRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\BrowserKit\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -22,9 +26,17 @@ final class AnimalsController extends AbstractController
     }
 
     #[Route('/animals/add', name: 'add_animals')]
-    public function add(): Response
+    public function add(Request $request, EntityManagerInterface $em): Response
     {
-
+               $animal = new Animals();
+               $formAnimal = $this-> createForm(AnimalsType::class, $animal);
+               $formAnimal-> handleRequest($request);
+               if ($formAnimal ->isSubmitted() && $formAnimal ->isValid()){
+                $em->persist($animal);
+                $em->flush();
+                dd('animal enregistré');
+                return $this->redirectToRoute('animal');
+               }
         
 
         return $this->render('animals/add.html.twig', [

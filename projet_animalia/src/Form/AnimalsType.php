@@ -15,6 +15,7 @@ class AnimalsType extends AbstractType
             ->add('name')
             ->add('type')
             ->add('genre')
+            ->add('Submited')
         ;
     }
 
