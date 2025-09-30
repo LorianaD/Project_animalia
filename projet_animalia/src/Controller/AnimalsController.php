@@ -40,8 +40,9 @@ final class AnimalsController extends AbstractController
             if ($file) {
                 $newFileName = time() . '_' . $file->getClientOriginalName();
                 dd($newFileName);
+                $file->move($this->getParameter('animals_dir'), $newFileName);
                 $animal->setImg($newFileName);
-                dd($newFileName,$animal,$file);
+                dd($newFileName, $animal, $file);
             }
 
             $em->persist($animal);
