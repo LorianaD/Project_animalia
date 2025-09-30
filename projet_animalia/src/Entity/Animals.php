@@ -34,6 +34,9 @@ class Animals
     #[ORM\OneToMany(targetEntity: Reviews::class, mappedBy: 'animals')]
     private Collection $review;
 
+    #[ORM\Column(length: 255)]
+    private ?string $Reviews = null;
+
     public function __construct()
     {
         $this->review = new ArrayCollection();
@@ -121,6 +124,18 @@ class Animals
                 $review->setAnimals(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getReviews(): ?string
+    {
+        return $this->Reviews;
+    }
+
+    public function setReviews(string $Reviews): static
+    {
+        $this->Reviews = $Reviews;
 
         return $this;
     }

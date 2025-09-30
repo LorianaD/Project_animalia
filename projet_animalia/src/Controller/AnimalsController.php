@@ -44,10 +44,9 @@ final class AnimalsController extends AbstractController
 
             if ($file) {
                 $newFileName = time() . '_' . $file->getClientOriginalName();
-                // dd($newFileName);
                 $file->move($this->getParameter('animals_dir'), $newFileName);
                 $animal->setImg($newFileName);
-                // dd($newFileName, $animal, $file);
+               
             }
 
             $em->persist($animal);
@@ -98,4 +97,26 @@ final class AnimalsController extends AbstractController
         ]);
     }
 
+    // DELETE = Supprimer un animal
+    #[Route(path:'/animals/{id}/delete', name: 'delete')]
+     public function delete(int $id, Request $request, Animals $animals, EntityManagerInterface $em)
+    {
+
+        if ($this->isCsrfTokenValid('delete' . $id, $request->request->get('_token'))) {
+            $em->remove($animals);
+            $em->flush();
+             $this->addFlash('success', 'bravo votre article a ete supprimé');
+
+            return $this->redirectToRoute('Animals');
+        } else {
+            $this->addFlash('error','echec de la suppression');
+            return$this->redirectToRoute('Animals');
+          
+        }
+    }
+
 }
+
+
+
+ 
