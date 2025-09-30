@@ -20,6 +20,7 @@
             <h3>{{ animal.name }}</h3>
             <span>{{ animal.typeId.Name }}</span>
             <span>{{ animal.genreId.Name }}</span>
+            <a href="{{ path('show_animal', {id: animal.id}) }}">Voir l'article</a>
         </article>
     {% endfor %}
 {% endblock %}
