@@ -15,7 +15,8 @@
     {% for animal in animals %}
         <article>
             <div>
-                <img src="{{ animal.img }}" alt="">
+
+                <img src="{{ asset('upload/' ~ animal.img) }}" alt="">
             </div>
             <h3>{{ animal.name }}</h3>
             <span>{{ animal.typeId.Name }}</span>

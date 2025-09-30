@@ -1,4 +1,7 @@
 <h2>{{ animal.name }}</h2>
+<img src="{{asset('upload/' ~ animal.img)}}" alt="illustration" />
 <span>{{ animal.typeId.Name }}</span>
 <span>{{ animal.genreId.Name }}</span>
-{# <p>{{ animal.reviewsId.reviews }}</p> #}
+<a href="{{ path('app_reviews', { id: animal.id }) }}">Ajouter un avis</a>
+{% include "animals/delete.html.twig" %}
+{# <p>{{ animal.reviewsId.review }}</p> #}
