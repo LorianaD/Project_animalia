@@ -7,7 +7,7 @@ use App\Form\AnimalsType;
 use App\Repository\AnimalsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\BrowserKit\Request;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -34,13 +34,14 @@ final class AnimalsController extends AbstractController
                if ($formAnimal ->isSubmitted() && $formAnimal ->isValid()){
                 $em->persist($animal);
                 $em->flush();
-                dd('animal enregistré');
                 return $this->redirectToRoute('animal');
                }
         
 
         return $this->render('animals/add.html.twig', [
             'titre' => "Ajout d'un animal",
+
+            'formAnimal'=>$formAnimal
         ]);
     }
 }
