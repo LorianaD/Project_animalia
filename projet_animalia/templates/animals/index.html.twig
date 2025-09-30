@@ -11,17 +11,17 @@
    <div>
     <a href="animals/add">Ajouter un article</a>
    </div>
-   <section class="animals">
-        {% for animal in animals %}
-            <article class="animal-card">
-                <div class="animal-card-box-img">
-                    <img src="{{ animal.img }}" alt="">
-                </div>
-                <h3>{{ animal.name }}</h3>
-                <span>{{ animal.typeId.Name }}</span>
-                <span>{{ animal.genreId.Name }}</span>
-                <a href="{{ path('show_animal', {id: animal.id}) }}">Voir l'article</a>
-            </article>
-        {% endfor %}
-    </section>
+
+    {% for animal in animals %}
+        <article class="animal-card">
+            <div class="animal-card-box-img">
+                <img src="{{ asset('upload/' ~ animal.img) }}" alt="">
+            </div>
+            <h3>{{ animal.name }}</h3>
+            <span>{{ animal.typeId.Name }}</span>
+            <span>{{ animal.genreId.Name }}</span>
+            <a href="{{ path('show_animal', {id: animal.id}) }}">Voir l'article</a>
+        </article>
+    {% endfor %}
+
 {% endblock %}
