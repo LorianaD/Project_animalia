@@ -18,22 +18,23 @@ class AnimalsType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('type_id',EntityType::class, [
-                'class' => Type::class ,
+            ->add('type_id', EntityType::class, [
+                'class' => Type::class,
                 'choice_label' => 'name',
                 'label' => 'Type',
                 'placeholder' => "Choisis l'espèce"
             ])
             ->add('genre_id', EntityType::class, [
-                'class' => Genre::class ,
+                'class' => Genre::class,
                 'choice_label' => 'name',
                 'label' => 'Genre',
-                'placeholder' => "Domestique ou Sauvage"])
+                'placeholder' => "Domestique ou Sauvage"
+            ])
 
-                ->add('img',FileType::class,[
-                 'label'=>'illustration',
-                  'mapped'=>false,
-                 ])
+            ->add('img', FileType::class, [
+                'label' => 'illustration',
+                'mapped' => false,
+            ])
 
             ->add('Submit', SubmitType::class)
         ;
