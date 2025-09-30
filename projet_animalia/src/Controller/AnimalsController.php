@@ -28,20 +28,32 @@ final class AnimalsController extends AbstractController
     #[Route('/animals/add', name: 'add_animals')]
     public function add(Request $request, EntityManagerInterface $em): Response
     {
-               $animal = new Animals();
-               $formAnimal = $this-> createForm(AnimalsType::class, $animal);
-               $formAnimal-> handleRequest($request);
-               if ($formAnimal ->isSubmitted() && $formAnimal ->isValid()){
-                $em->persist($animal);
-                $em->flush();
-                return $this->redirectToRoute('animal');
-               }
-        
+        $animal = new Animals();
+        $formAnimal = $this->createForm(AnimalsType::class, $animal);
+        $formAnimal->handleRequest($request);
+
+
+        if ($formAnimal->isSubmitted() && $formAnimal->isValid()) {
+
+            $file = $formAnimal->get('img')->getData();
+
+            if ($file) {
+                $newFileName = time() . '_' . $file->getClientOriginalName();
+                dd($newFileName);
+                $animal->setImg($newFileName);
+                dd($newFileName,$animal,$file);
+            }
+
+            $em->persist($animal);
+            $em->flush();
+            return $this->redirectToRoute('animal');
+        }
+
 
         return $this->render('animals/add.html.twig', [
             'titre' => "Ajout d'un animal",
 
-            'formAnimal'=>$formAnimal
+            'formAnimal' => $formAnimal
         ]);
     }
 }

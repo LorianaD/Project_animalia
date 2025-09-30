@@ -7,6 +7,7 @@ use App\Entity\Genre;
 use App\Entity\Type;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -28,6 +29,12 @@ class AnimalsType extends AbstractType
                 'choice_label' => 'name',
                 'label' => 'Genre',
                 'placeholder' => "Domestique ou Sauvage"])
+
+                ->add('img',FileType::class,[
+                 'label'=>'illustration',
+                  'mapped'=>false,
+                 ])
+
             ->add('Submit', SubmitType::class)
         ;
     }
