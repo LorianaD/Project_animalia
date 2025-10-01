@@ -1,27 +1,33 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
-
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
-        {% block header %}
-            <h1>Animalia</h1>
-            <p>Un blog pour les amis des animaux, qui veulent parler d'animaux</p>
-            <nav>
-                <ul>
-                    <li><a href="{{ path('animals') }}">Accueil</a></li>
-                    <li><a href="animals/add">Ajouter un article</a></li>
-                </ul>
-            </nav>
-        {% endblock %}
-        {% block body %}{% endblock %}
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>"
+    />
+    {% block stylesheets %} {% endblock %} {% block javascripts %} {% block
+    importmap %}{{
+      importmap("app")
+    }}{% endblock %} {% endblock %}
+  </head>
+  <body>
+    {% block header %}
+    <section class="header-animals">
+   <img src="{{ asset('images/logo_animalia.png') }}" alt="logo-animalia">
+      <p>Un blog pour les amis des animaux, qui veulent parler d'animaux</p>
+      <nav class="header-buttons">
+        <ul>
+          <li class="accueil-button">
+            <a href="{{ path('animals') }}">Accueil</a>
+          </li>
+          <li class="add-button">
+            <a href="animals/add">Ajouter un article</a>
+          </li>
+        </ul>
+      </nav>
+    </section>
+    {% endblock %} {% block body %}{% endblock %}
+  </body>
 </html>
