@@ -13,15 +13,24 @@
     </head>
     <body>
         {% block header %}
-            <h1>Animalia</h1>
-            <p>Un blog pour les amis des animaux, qui veulent parler d'animaux</p>
-            <nav>
-                <ul>
-                    <li><a href="{{ path('animals') }}">Accueil</a></li>
-                    <li><a href="animals/add">Ajouter un article</a></li>
-                </ul>
-            </nav>
+            <header>
+                <div>
+                    <h1>Animalia</h1>
+                    <p>Un blog pour les amis des animaux, qui veulent parler d'animaux</p>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="{{ path('animals') }}">Accueil</a></li>
+                        <li><a href="animals/add">Ajouter un article</a></li>
+                    </ul>
+                </nav>
+            </header>
         {% endblock %}
         {% block body %}{% endblock %}
+        {% block footer %}
+            <footer>
+                <span>&#169; 2025 - Vanessa & Loriana</span>
+            </footer>
+        {% endblock %}
     </body>
 </html>
