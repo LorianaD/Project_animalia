@@ -8,20 +8,18 @@
         <h2>Bonjour sur notre blog !</h2>
     </div>
 
-   <div>
-    <a href="animals/add">Ajouter un article</a>
-   </div>
-
-    {% for animal in animals %}
-        <article class="animal-card">
-            <div class="animal-card-box-img">
-                <img src="{{ asset('upload/' ~ animal.img) }}" alt="">
-            </div>
-            <h3>{{ animal.name }}</h3>
-            <span>{{ animal.typeId.Name }}</span>
-            <span>{{ animal.genreId.Name }}</span>
-            <a href="{{ path('show_animal', {id: animal.id}) }}">Voir l'article</a>
-        </article>
-    {% endfor %}
+    <section class="animals-list">
+        {% for animal in animals %}
+            <article class="animal-card">
+                <div class="animal-card-box-img">
+                    <img src="{{ asset('upload/' ~ animal.img) }}" alt="">
+                </div>
+                <h3>{{ animal.name }}</h3>
+                <span>{{ animal.typeId.Name }}</span>
+                <span>{{ animal.genreId.Name }}</span>
+                <a href="{{ path('show_animal', {id: animal.id}) }}">Voir l'article</a>
+            </article>
+        {% endfor %}
+    </section>
 
 {% endblock %}

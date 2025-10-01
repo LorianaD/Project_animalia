@@ -9,6 +9,10 @@ body {
     background-color: skyblue;
 }
 
+a {
+    text-decoration: none;
+}
+
 img {
     width: 100%;
 }
@@ -17,13 +21,48 @@ span {
     display: block;
 }
 
+li {
+    list-style: none;
+}
+
+/* HEADER */
+
+ul {
+    display: flex;
+}
+
+li {
+    margin: 5px;
+    background-color: rgb(0, 0, 255);
+    padding: 4px;
+    border-radius: 10px;
+}
+
+li>a {
+    color: rgb(255, 255, 255);
+}
+
 /* INDEX = Page d'accueil */
 
+.animals-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
 .animal-card {
-    width: 500px;
-    display: b;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 5px 5px 5px 5px rgba(185, 185, 185, 0.6);
+    padding: 10px;
+    margin: 10px;
 }
 
 .animal-card-box-img {
     width: 300px;
+}
+
+/* SHOW = Page individuel de l'animal */
+
+.animal-box-img {
+    width: 500px;
 }

@@ -1,8 +1,25 @@
-<h2>{{ animal.name }}</h2>
-<img src="{{asset('upload/' ~ animal.img)}}" alt="illustration" />
-<span>{{ animal.typeId.Name }}</span>
-<span>{{ animal.genreId.Name }}</span>
-<a href="{{ path('app_reviews', { id: animal.id }) }}">Ajouter un avis</a>
-{% include "animals/delete.html.twig" %}
-<a href="{{ path('edit_animal', {id: animal.id}) }}">Modifier l'article</a>
-{# <p>{{ animal.reviewsId.review }}</p> #}
+{% extends 'base.html.twig' %}
+
+{# {% block header %}
+    <h1>Animalia</h1>
+    <p>Un blog pour les amis des animaux, qui veulent parler d'animaux</p>
+    <nav>
+        <ul>
+            <li><a href="{{ path('animals') }}">Accueil</a></li>
+        </ul>
+    </nav>
+{% endblock %} #}
+{% block body %}
+
+    <h2>{{ animal.name }}</h2>
+    <div class="animal-box-img">
+        <img src="{{asset('upload/' ~ animal.img)}}" alt="illustration" />
+    </div>
+    <span>{{ animal.typeId.Name }}</span>
+    <span>{{ animal.genreId.Name }}</span>
+    <a href="{{ path('app_reviews', { id: animal.id }) }}">Ajouter un avis</a>
+    {% include "animals/delete.html.twig" %}
+    <a href="{{ path('edit_animal', {id: animal.id}) }}">Modifier l'article</a>
+    {# <p>{{ animal.reviewsId.review }}</p> #}
+
+{% endblock %}
