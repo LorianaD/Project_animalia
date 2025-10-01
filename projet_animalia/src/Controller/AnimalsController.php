@@ -79,21 +79,34 @@ final class AnimalsController extends AbstractController
     // EDIT = Modifier un animal
 
     #[Route('/animals/{id}/edit', name: 'edit_animal')]
-    public function edit(Animals $animals, Request $request, EntityManagerInterface $em): Response
+    public function edit(Animals $animal, Request $request, EntityManagerInterface $em): Response
     {
        
-        $formAnimal = $this->createForm(AnimalsType::class, $animals);
+        $formAnimalEdit = $this->createForm(AnimalsType::class, $animal);
 
-        $formAnimal->handleRequest($request);
+        $formAnimalEdit->handleRequest($request);
 
-        if($formAnimal->isSubmitted() && $formAnimal->isValid()) {
+        if ($formAnimalEdit->isSubmitted() && $formAnimalEdit->isValid()) {
             $em->flush();
             $this->addFlash('Success', 'Bravo votre animal a été modifié');
-            return $this->redirectToRoute('Animals');
+            $file = $formAnimalEdit->get('img')->getData();
+
+            if ($file) {
+                $newFileName = time() . '_' . $file->getClientOriginalName();
+                $file->move($this->getParameter('animals_dir'), $newFileName);
+                $animal->setImg($newFileName);
+               
+            }
+
+            $em->persist($animal);
+            $em->flush();
+            return $this->redirectToRoute('animals');
         }
+
 
         return $this->render('animals/edit.html.twig', [
             'titre' => "Modifier un animal",
+            'formAnimalEdit' => $formAnimalEdit
         ]);
     }
 
@@ -107,7 +120,7 @@ final class AnimalsController extends AbstractController
             $em->flush();
              $this->addFlash('success', 'bravo votre article a ete supprimé');
 
-            return $this->redirectToRoute('Animals');
+            return $this->redirectToRoute('animals');
         } else {
             $this->addFlash('error','echec de la suppression');
             return$this->redirectToRoute('Animals');

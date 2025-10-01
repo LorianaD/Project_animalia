@@ -4,4 +4,5 @@
 <span>{{ animal.genreId.Name }}</span>
 <a href="{{ path('app_reviews', { id: animal.id }) }}">Ajouter un avis</a>
 {% include "animals/delete.html.twig" %}
+<a href="{{ path('edit_animal', {id: animal.id}) }}">Modifier l'article</a>
 {# <p>{{ animal.reviewsId.review }}</p> #}
